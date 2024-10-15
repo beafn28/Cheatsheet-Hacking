@@ -1,4 +1,4 @@
-# Cheat Sheet - eJPT
+# CheatSheet - eJPTv2
 
 ### Índice:
 - [Comandos básicos](#comandos-básicos)
