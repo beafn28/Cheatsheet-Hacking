@@ -1,5 +1,4 @@
-# CheatSheet - eJPTv2
-
+# CheatSheet - eJPTv2 (comprobar y añadir más)
 ### Índice:
 - [Comandos básicos](#comandos-básicos)
 - [Enumeración de OS](#enumeración-de-os-sistema-operativo)
